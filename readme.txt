@@ -1,12 +1,25 @@
-Protocol Buffers - Google's data interchange format
-Copyright 2008 Google Inc.
-https://developers.google.com/protocol-buffers/
-This package contains a precompiled binary version of the protocol buffer
-compiler (protoc). This binary is intended for users who want to use Protocol
-Buffers in languages other than C++ but do not want to compile protoc
-themselves. To install, simply place this binary somewhere in your PATH.
-If you intend to use the included well known types then don't forget to
-copy the contents of the 'include' directory somewhere as well, for example
-into '/usr/local/include/'.
-Please refer to our official github site for more installation instructions:
-  https://github.com/protocolbuffers/protobuf
+PROJECT ATTENDANCE INITIAL TEMPLATE
+
+pg_ctl -D "C:\pgsql\data" start -l logfile
+psql -U postgres
+CREATE DATABASE attendance_db;
+
+mkdir Team2_Attendance_Project
+cd Team2_Attendance_Project
+mkdir db db\migrations db\sqlc proto internal internal\db internal\service
+
+migrate create -ext sql -dir db/migrations -seq init_schema
+
+#buat up db
+migrate -source "file://C:/Users/Lenovo/Documents/PROJECT GOLANG/Team2_Attendance_Project/db/migrations" -database "postgres://postgres:@localhost:5432/attendance_db?sslmode=disable" up
+#buat down
+migrate -source "file://C:/Users/Lenovo/Documents/PROJECT GOLANG/Team2_Attendance_Project/db/migrations" -database "postgres://postgres:@localhost:5432/attendance_db?sslmode=disable" down
+
+protoc --go_out=. --go-grpc_out=. proto/attendance.proto
+
+protoc -I=proto -I=./googleapis --go_out=internal/service/attendancepb --go_opt=paths=source_relative --go-grpc_out=internal/service/attendancepb --go-grpc_opt=paths=source_relative --grpc-gateway_out=internal/service/attendancepb --grpc-gateway_opt=paths=source_relative proto/attendance.proto
+
+
+go run main.go
+
+grpcui -plaintext -port 9090 localhost:50051
