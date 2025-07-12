@@ -1,0 +1,150 @@
+syntax = "proto3";
+
+package attendance;
+
+option go_package = "internal/service/attendancepb";
+
+import "google/api/annotations.proto";
+
+service StudentService {
+  rpc CreateStudent (CreateStudentRequest) returns (StudentResponse) {
+    option (google.api.http) = {
+      post: "/v1/students"
+      body: "*"
+    };
+  }
+
+  rpc GetStudentByID (GetStudentRequest) returns (StudentResponse) {
+    option (google.api.http) = {
+      get: "/v1/students/{id}"
+    };
+  }
+
+  rpc ListStudents (Empty) returns (StudentList) {
+    option (google.api.http) = {
+      get: "/v1/students"
+    };
+  }
+}
+
+message CreateStudentRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message GetStudentRequest {
+  int32 id = 1;
+}
+
+message StudentResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  string created_at = 4;
+}
+
+message StudentList {
+  repeated StudentResponse students = 1;
+}
+
+service CourseService {
+  rpc CreateCourse (CreateCourseRequest) returns (CourseResponse) {
+    option (google.api.http) = {
+      post: "/v1/courses"
+      body: "*"
+    };
+  }
+
+  rpc ListCourses (Empty) returns (CourseList) {
+    option (google.api.http) = {
+      get: "/v1/courses"
+    };
+  }
+}
+
+message CreateCourseRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CourseResponse {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message CourseList {
+  repeated CourseResponse courses = 1;
+}
+
+service AdminService {
+  rpc CreateAdmin (CreateAdminRequest) returns (AdminResponse) {
+    option (google.api.http) = {
+      post: "/v1/admins"
+      body: "*"
+    };
+  }
+
+  rpc LoginAdmin (AdminLoginRequest) returns (AdminResponse) {
+    option (google.api.http) = {
+      post: "/v1/admins/login"
+      body: "*"
+    };
+  }
+}
+
+message CreateAdminRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message AdminLoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AdminResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+service AttendanceService{
+  rpc MarkAttendance (MarkAttendanceRequest) returns (AttendanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/attendance"
+      body: "*"
+    };
+  }
+
+  rpc GetAttendanceForStudent (StudentAttendanceRequest) returns (AttendanceList) {
+    option (google.api.http) = {
+      get: "/v1/attendance/{student_id}"
+    };
+  }
+}
+
+message MarkAttendanceRequest {
+  int32 student_id = 1;
+  int32 course_id = 2;
+  string status = 3; // "present", "absent", etc.
+}
+
+message AttendanceResponse {
+  int32 id = 1;
+  int32 student_id = 2;
+  int32 course_id = 3;
+  string status = 4;
+  string timestamp = 5;
+}
+
+message StudentAttendanceRequest {
+  int32 student_id = 1;
+}
+
+message AttendanceList {
+  repeated AttendanceResponse records = 1;
+}
+
+message Empty {}
