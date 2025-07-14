@@ -35,6 +35,16 @@ func (q *Queries) CreateAdmin(ctx context.Context, arg CreateAdminParams) (Admin
 	return i, err
 }
 
+const deleteAdmin = `-- name: DeleteAdmin :exec
+DELETE FROM admins
+WHERE email = $1
+`
+
+func (q *Queries) DeleteAdmin(ctx context.Context, email string) error {
+	_, err := q.db.ExecContext(ctx, deleteAdmin, email)
+	return err
+}
+
 const getAdminByEmail = `-- name: GetAdminByEmail :one
 SELECT id, name, email, role, created_at FROM admins
 WHERE email = $1
@@ -85,4 +95,30 @@ func (q *Queries) ListAdmins(ctx context.Context) ([]Admin, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateAdmin = `-- name: UpdateAdmin :one
+UPDATE admins
+SET name = $2, email = $3
+WHERE id = $1
+    RETURNING id, name, email, role, created_at
+`
+
+type UpdateAdminParams struct {
+	ID    int32
+	Name  string
+	Email string
+}
+
+func (q *Queries) UpdateAdmin(ctx context.Context, arg UpdateAdminParams) (Admin, error) {
+	row := q.db.QueryRowContext(ctx, updateAdmin, arg.ID, arg.Name, arg.Email)
+	var i Admin
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Email,
+		&i.Role,
+		&i.CreatedAt,
+	)
+	return i, err
 }
