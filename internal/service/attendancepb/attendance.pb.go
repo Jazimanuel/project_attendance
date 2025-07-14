@@ -74,6 +74,66 @@ func (x *CreateStudentRequest) GetEmail() string {
 	return ""
 }
 
+type UpdateStudentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateStudentRequest) Reset() {
+	*x = UpdateStudentRequest{}
+	mi := &file_attendance_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateStudentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateStudentRequest) ProtoMessage() {}
+
+func (x *UpdateStudentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateStudentRequest.ProtoReflect.Descriptor instead.
+func (*UpdateStudentRequest) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UpdateStudentRequest) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateStudentRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateStudentRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type GetStudentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -83,7 +143,7 @@ type GetStudentRequest struct {
 
 func (x *GetStudentRequest) Reset() {
 	*x = GetStudentRequest{}
-	mi := &file_attendance_proto_msgTypes[1]
+	mi := &file_attendance_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +155,7 @@ func (x *GetStudentRequest) String() string {
 func (*GetStudentRequest) ProtoMessage() {}
 
 func (x *GetStudentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[1]
+	mi := &file_attendance_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +168,7 @@ func (x *GetStudentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStudentRequest.ProtoReflect.Descriptor instead.
 func (*GetStudentRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{1}
+	return file_attendance_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetStudentRequest) GetId() int32 {
@@ -130,7 +190,7 @@ type StudentResponse struct {
 
 func (x *StudentResponse) Reset() {
 	*x = StudentResponse{}
-	mi := &file_attendance_proto_msgTypes[2]
+	mi := &file_attendance_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -142,7 +202,7 @@ func (x *StudentResponse) String() string {
 func (*StudentResponse) ProtoMessage() {}
 
 func (x *StudentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[2]
+	mi := &file_attendance_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -155,7 +215,7 @@ func (x *StudentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StudentResponse.ProtoReflect.Descriptor instead.
 func (*StudentResponse) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{2}
+	return file_attendance_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *StudentResponse) GetId() int32 {
@@ -195,7 +255,7 @@ type StudentList struct {
 
 func (x *StudentList) Reset() {
 	*x = StudentList{}
-	mi := &file_attendance_proto_msgTypes[3]
+	mi := &file_attendance_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +267,7 @@ func (x *StudentList) String() string {
 func (*StudentList) ProtoMessage() {}
 
 func (x *StudentList) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[3]
+	mi := &file_attendance_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +280,7 @@ func (x *StudentList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StudentList.ProtoReflect.Descriptor instead.
 func (*StudentList) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{3}
+	return file_attendance_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *StudentList) GetStudents() []*StudentResponse {
@@ -233,14 +293,14 @@ func (x *StudentList) GetStudents() []*StudentResponse {
 type CreateCourseRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Instructor    string                 `protobuf:"bytes,2,opt,name=instructor,proto3" json:"instructor,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateCourseRequest) Reset() {
 	*x = CreateCourseRequest{}
-	mi := &file_attendance_proto_msgTypes[4]
+	mi := &file_attendance_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -252,7 +312,7 @@ func (x *CreateCourseRequest) String() string {
 func (*CreateCourseRequest) ProtoMessage() {}
 
 func (x *CreateCourseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[4]
+	mi := &file_attendance_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -265,7 +325,7 @@ func (x *CreateCourseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCourseRequest.ProtoReflect.Descriptor instead.
 func (*CreateCourseRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{4}
+	return file_attendance_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateCourseRequest) GetTitle() string {
@@ -275,25 +335,130 @@ func (x *CreateCourseRequest) GetTitle() string {
 	return ""
 }
 
-func (x *CreateCourseRequest) GetDescription() string {
+func (x *CreateCourseRequest) GetInstructor() string {
 	if x != nil {
-		return x.Description
+		return x.Instructor
 	}
 	return ""
+}
+
+type UpdateCourseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Instructor    string                 `protobuf:"bytes,3,opt,name=instructor,proto3" json:"instructor,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCourseRequest) Reset() {
+	*x = UpdateCourseRequest{}
+	mi := &file_attendance_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCourseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCourseRequest) ProtoMessage() {}
+
+func (x *UpdateCourseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCourseRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCourseRequest) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateCourseRequest) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateCourseRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateCourseRequest) GetInstructor() string {
+	if x != nil {
+		return x.Instructor
+	}
+	return ""
+}
+
+type GetCourseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCourseRequest) Reset() {
+	*x = GetCourseRequest{}
+	mi := &file_attendance_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCourseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCourseRequest) ProtoMessage() {}
+
+func (x *GetCourseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCourseRequest.ProtoReflect.Descriptor instead.
+func (*GetCourseRequest) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetCourseRequest) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 type CourseResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Instructor    string                 `protobuf:"bytes,3,opt,name=instructor,proto3" json:"instructor,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CourseResponse) Reset() {
 	*x = CourseResponse{}
-	mi := &file_attendance_proto_msgTypes[5]
+	mi := &file_attendance_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -305,7 +470,7 @@ func (x *CourseResponse) String() string {
 func (*CourseResponse) ProtoMessage() {}
 
 func (x *CourseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[5]
+	mi := &file_attendance_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +483,7 @@ func (x *CourseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourseResponse.ProtoReflect.Descriptor instead.
 func (*CourseResponse) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{5}
+	return file_attendance_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CourseResponse) GetId() int32 {
@@ -335,9 +500,16 @@ func (x *CourseResponse) GetTitle() string {
 	return ""
 }
 
-func (x *CourseResponse) GetDescription() string {
+func (x *CourseResponse) GetInstructor() string {
 	if x != nil {
-		return x.Description
+		return x.Instructor
+	}
+	return ""
+}
+
+func (x *CourseResponse) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
 	}
 	return ""
 }
@@ -351,7 +523,7 @@ type CourseList struct {
 
 func (x *CourseList) Reset() {
 	*x = CourseList{}
-	mi := &file_attendance_proto_msgTypes[6]
+	mi := &file_attendance_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -363,7 +535,7 @@ func (x *CourseList) String() string {
 func (*CourseList) ProtoMessage() {}
 
 func (x *CourseList) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[6]
+	mi := &file_attendance_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -376,7 +548,7 @@ func (x *CourseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourseList.ProtoReflect.Descriptor instead.
 func (*CourseList) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{6}
+	return file_attendance_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CourseList) GetCourses() []*CourseResponse {
@@ -397,7 +569,7 @@ type CreateAdminRequest struct {
 
 func (x *CreateAdminRequest) Reset() {
 	*x = CreateAdminRequest{}
-	mi := &file_attendance_proto_msgTypes[7]
+	mi := &file_attendance_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -409,7 +581,7 @@ func (x *CreateAdminRequest) String() string {
 func (*CreateAdminRequest) ProtoMessage() {}
 
 func (x *CreateAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[7]
+	mi := &file_attendance_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -422,7 +594,7 @@ func (x *CreateAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAdminRequest.ProtoReflect.Descriptor instead.
 func (*CreateAdminRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{7}
+	return file_attendance_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateAdminRequest) GetName() string {
@@ -446,6 +618,50 @@ func (x *CreateAdminRequest) GetPassword() string {
 	return ""
 }
 
+type GetAdminByEmail struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAdminByEmail) Reset() {
+	*x = GetAdminByEmail{}
+	mi := &file_attendance_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAdminByEmail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAdminByEmail) ProtoMessage() {}
+
+func (x *GetAdminByEmail) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAdminByEmail.ProtoReflect.Descriptor instead.
+func (*GetAdminByEmail) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetAdminByEmail) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type AdminLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -456,7 +672,7 @@ type AdminLoginRequest struct {
 
 func (x *AdminLoginRequest) Reset() {
 	*x = AdminLoginRequest{}
-	mi := &file_attendance_proto_msgTypes[8]
+	mi := &file_attendance_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +684,7 @@ func (x *AdminLoginRequest) String() string {
 func (*AdminLoginRequest) ProtoMessage() {}
 
 func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[8]
+	mi := &file_attendance_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +697,7 @@ func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminLoginRequest.ProtoReflect.Descriptor instead.
 func (*AdminLoginRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{8}
+	return file_attendance_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *AdminLoginRequest) GetEmail() string {
@@ -498,7 +714,7 @@ func (x *AdminLoginRequest) GetPassword() string {
 	return ""
 }
 
-type AdminResponse struct {
+type UpdateAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -507,9 +723,70 @@ type AdminResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
+func (x *UpdateAdminRequest) Reset() {
+	*x = UpdateAdminRequest{}
+	mi := &file_attendance_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAdminRequest) ProtoMessage() {}
+
+func (x *UpdateAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAdminRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAdminRequest) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *UpdateAdminRequest) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateAdminRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type AdminResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
 func (x *AdminResponse) Reset() {
 	*x = AdminResponse{}
-	mi := &file_attendance_proto_msgTypes[9]
+	mi := &file_attendance_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -521,7 +798,7 @@ func (x *AdminResponse) String() string {
 func (*AdminResponse) ProtoMessage() {}
 
 func (x *AdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[9]
+	mi := &file_attendance_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -534,7 +811,7 @@ func (x *AdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminResponse.ProtoReflect.Descriptor instead.
 func (*AdminResponse) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{9}
+	return file_attendance_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AdminResponse) GetId() int32 {
@@ -558,6 +835,57 @@ func (x *AdminResponse) GetEmail() string {
 	return ""
 }
 
+func (x *AdminResponse) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type AdminList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Admins        []*AdminResponse       `protobuf:"bytes,1,rep,name=admins,proto3" json:"admins,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminList) Reset() {
+	*x = AdminList{}
+	mi := &file_attendance_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminList) ProtoMessage() {}
+
+func (x *AdminList) ProtoReflect() protoreflect.Message {
+	mi := &file_attendance_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminList.ProtoReflect.Descriptor instead.
+func (*AdminList) Descriptor() ([]byte, []int) {
+	return file_attendance_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *AdminList) GetAdmins() []*AdminResponse {
+	if x != nil {
+		return x.Admins
+	}
+	return nil
+}
+
 type MarkAttendanceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StudentId     int32                  `protobuf:"varint,1,opt,name=student_id,json=studentId,proto3" json:"student_id,omitempty"`
@@ -569,7 +897,7 @@ type MarkAttendanceRequest struct {
 
 func (x *MarkAttendanceRequest) Reset() {
 	*x = MarkAttendanceRequest{}
-	mi := &file_attendance_proto_msgTypes[10]
+	mi := &file_attendance_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -581,7 +909,7 @@ func (x *MarkAttendanceRequest) String() string {
 func (*MarkAttendanceRequest) ProtoMessage() {}
 
 func (x *MarkAttendanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[10]
+	mi := &file_attendance_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -594,7 +922,7 @@ func (x *MarkAttendanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkAttendanceRequest.ProtoReflect.Descriptor instead.
 func (*MarkAttendanceRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{10}
+	return file_attendance_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MarkAttendanceRequest) GetStudentId() int32 {
@@ -631,7 +959,7 @@ type AttendanceResponse struct {
 
 func (x *AttendanceResponse) Reset() {
 	*x = AttendanceResponse{}
-	mi := &file_attendance_proto_msgTypes[11]
+	mi := &file_attendance_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +971,7 @@ func (x *AttendanceResponse) String() string {
 func (*AttendanceResponse) ProtoMessage() {}
 
 func (x *AttendanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[11]
+	mi := &file_attendance_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +984,7 @@ func (x *AttendanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttendanceResponse.ProtoReflect.Descriptor instead.
 func (*AttendanceResponse) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{11}
+	return file_attendance_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *AttendanceResponse) GetId() int32 {
@@ -703,7 +1031,7 @@ type StudentAttendanceRequest struct {
 
 func (x *StudentAttendanceRequest) Reset() {
 	*x = StudentAttendanceRequest{}
-	mi := &file_attendance_proto_msgTypes[12]
+	mi := &file_attendance_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -715,7 +1043,7 @@ func (x *StudentAttendanceRequest) String() string {
 func (*StudentAttendanceRequest) ProtoMessage() {}
 
 func (x *StudentAttendanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[12]
+	mi := &file_attendance_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -728,7 +1056,7 @@ func (x *StudentAttendanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StudentAttendanceRequest.ProtoReflect.Descriptor instead.
 func (*StudentAttendanceRequest) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{12}
+	return file_attendance_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *StudentAttendanceRequest) GetStudentId() int32 {
@@ -747,7 +1075,7 @@ type AttendanceList struct {
 
 func (x *AttendanceList) Reset() {
 	*x = AttendanceList{}
-	mi := &file_attendance_proto_msgTypes[13]
+	mi := &file_attendance_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -759,7 +1087,7 @@ func (x *AttendanceList) String() string {
 func (*AttendanceList) ProtoMessage() {}
 
 func (x *AttendanceList) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[13]
+	mi := &file_attendance_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -772,7 +1100,7 @@ func (x *AttendanceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttendanceList.ProtoReflect.Descriptor instead.
 func (*AttendanceList) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{13}
+	return file_attendance_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *AttendanceList) GetRecords() []*AttendanceResponse {
@@ -790,7 +1118,7 @@ type Empty struct {
 
 func (x *Empty) Reset() {
 	*x = Empty{}
-	mi := &file_attendance_proto_msgTypes[14]
+	mi := &file_attendance_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -802,7 +1130,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_attendance_proto_msgTypes[14]
+	mi := &file_attendance_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -815,7 +1143,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_attendance_proto_rawDescGZIP(), []int{14}
+	return file_attendance_proto_rawDescGZIP(), []int{20}
 }
 
 var File_attendance_proto protoreflect.FileDescriptor
@@ -826,7 +1154,11 @@ const file_attendance_proto_rawDesc = "" +
 	"attendance\x1a\x1cgoogle/api/annotations.proto\"@\n" +
 	"\x14CreateStudentRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\"#\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\"P\n" +
+	"\x14UpdateStudentRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\"#\n" +
 	"\x11GetStudentRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"j\n" +
 	"\x0fStudentResponse\x12\x0e\n" +
@@ -836,28 +1168,52 @@ const file_attendance_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x04 \x01(\tR\tcreatedAt\"F\n" +
 	"\vStudentList\x127\n" +
-	"\bstudents\x18\x01 \x03(\v2\x1b.attendance.StudentResponseR\bstudents\"M\n" +
+	"\bstudents\x18\x01 \x03(\v2\x1b.attendance.StudentResponseR\bstudents\"K\n" +
 	"\x13CreateCourseRequest\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\"X\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1e\n" +
+	"\n" +
+	"instructor\x18\x02 \x01(\tR\n" +
+	"instructor\"[\n" +
+	"\x13UpdateCourseRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1e\n" +
+	"\n" +
+	"instructor\x18\x03 \x01(\tR\n" +
+	"instructor\"\"\n" +
+	"\x10GetCourseRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\"u\n" +
 	"\x0eCourseResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"B\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1e\n" +
+	"\n" +
+	"instructor\x18\x03 \x01(\tR\n" +
+	"instructor\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x04 \x01(\tR\tcreatedAt\"B\n" +
 	"\n" +
 	"CourseList\x124\n" +
 	"\acourses\x18\x01 \x03(\v2\x1a.attendance.CourseResponseR\acourses\"Z\n" +
 	"\x12CreateAdminRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"E\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"'\n" +
+	"\x0fGetAdminByEmail\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"E\n" +
 	"\x11AdminLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"I\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"N\n" +
+	"\x12UpdateAdminRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\"h\n" +
 	"\rAdminResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"k\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x04 \x01(\tR\tcreatedAt\">\n" +
+	"\tAdminList\x121\n" +
+	"\x06admins\x18\x01 \x03(\v2\x19.attendance.AdminResponseR\x06admins\"k\n" +
 	"\x15MarkAttendanceRequest\x12\x1d\n" +
 	"\n" +
 	"student_id\x18\x01 \x01(\x05R\tstudentId\x12\x1b\n" +
@@ -904,51 +1260,58 @@ func file_attendance_proto_rawDescGZIP() []byte {
 	return file_attendance_proto_rawDescData
 }
 
-var file_attendance_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_attendance_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_attendance_proto_goTypes = []any{
 	(*CreateStudentRequest)(nil),     // 0: attendance.CreateStudentRequest
-	(*GetStudentRequest)(nil),        // 1: attendance.GetStudentRequest
-	(*StudentResponse)(nil),          // 2: attendance.StudentResponse
-	(*StudentList)(nil),              // 3: attendance.StudentList
-	(*CreateCourseRequest)(nil),      // 4: attendance.CreateCourseRequest
-	(*CourseResponse)(nil),           // 5: attendance.CourseResponse
-	(*CourseList)(nil),               // 6: attendance.CourseList
-	(*CreateAdminRequest)(nil),       // 7: attendance.CreateAdminRequest
-	(*AdminLoginRequest)(nil),        // 8: attendance.AdminLoginRequest
-	(*AdminResponse)(nil),            // 9: attendance.AdminResponse
-	(*MarkAttendanceRequest)(nil),    // 10: attendance.MarkAttendanceRequest
-	(*AttendanceResponse)(nil),       // 11: attendance.AttendanceResponse
-	(*StudentAttendanceRequest)(nil), // 12: attendance.StudentAttendanceRequest
-	(*AttendanceList)(nil),           // 13: attendance.AttendanceList
-	(*Empty)(nil),                    // 14: attendance.Empty
+	(*UpdateStudentRequest)(nil),     // 1: attendance.UpdateStudentRequest
+	(*GetStudentRequest)(nil),        // 2: attendance.GetStudentRequest
+	(*StudentResponse)(nil),          // 3: attendance.StudentResponse
+	(*StudentList)(nil),              // 4: attendance.StudentList
+	(*CreateCourseRequest)(nil),      // 5: attendance.CreateCourseRequest
+	(*UpdateCourseRequest)(nil),      // 6: attendance.UpdateCourseRequest
+	(*GetCourseRequest)(nil),         // 7: attendance.GetCourseRequest
+	(*CourseResponse)(nil),           // 8: attendance.CourseResponse
+	(*CourseList)(nil),               // 9: attendance.CourseList
+	(*CreateAdminRequest)(nil),       // 10: attendance.CreateAdminRequest
+	(*GetAdminByEmail)(nil),          // 11: attendance.GetAdminByEmail
+	(*AdminLoginRequest)(nil),        // 12: attendance.AdminLoginRequest
+	(*UpdateAdminRequest)(nil),       // 13: attendance.UpdateAdminRequest
+	(*AdminResponse)(nil),            // 14: attendance.AdminResponse
+	(*AdminList)(nil),                // 15: attendance.AdminList
+	(*MarkAttendanceRequest)(nil),    // 16: attendance.MarkAttendanceRequest
+	(*AttendanceResponse)(nil),       // 17: attendance.AttendanceResponse
+	(*StudentAttendanceRequest)(nil), // 18: attendance.StudentAttendanceRequest
+	(*AttendanceList)(nil),           // 19: attendance.AttendanceList
+	(*Empty)(nil),                    // 20: attendance.Empty
 }
 var file_attendance_proto_depIdxs = []int32{
-	2,  // 0: attendance.StudentList.students:type_name -> attendance.StudentResponse
-	5,  // 1: attendance.CourseList.courses:type_name -> attendance.CourseResponse
-	11, // 2: attendance.AttendanceList.records:type_name -> attendance.AttendanceResponse
-	0,  // 3: attendance.StudentService.CreateStudent:input_type -> attendance.CreateStudentRequest
-	1,  // 4: attendance.StudentService.GetStudentByID:input_type -> attendance.GetStudentRequest
-	14, // 5: attendance.StudentService.ListStudents:input_type -> attendance.Empty
-	4,  // 6: attendance.CourseService.CreateCourse:input_type -> attendance.CreateCourseRequest
-	14, // 7: attendance.CourseService.ListCourses:input_type -> attendance.Empty
-	7,  // 8: attendance.AdminService.CreateAdmin:input_type -> attendance.CreateAdminRequest
-	8,  // 9: attendance.AdminService.LoginAdmin:input_type -> attendance.AdminLoginRequest
-	10, // 10: attendance.AttendanceService.MarkAttendance:input_type -> attendance.MarkAttendanceRequest
-	12, // 11: attendance.AttendanceService.GetAttendanceForStudent:input_type -> attendance.StudentAttendanceRequest
-	2,  // 12: attendance.StudentService.CreateStudent:output_type -> attendance.StudentResponse
-	2,  // 13: attendance.StudentService.GetStudentByID:output_type -> attendance.StudentResponse
-	3,  // 14: attendance.StudentService.ListStudents:output_type -> attendance.StudentList
-	5,  // 15: attendance.CourseService.CreateCourse:output_type -> attendance.CourseResponse
-	6,  // 16: attendance.CourseService.ListCourses:output_type -> attendance.CourseList
-	9,  // 17: attendance.AdminService.CreateAdmin:output_type -> attendance.AdminResponse
-	9,  // 18: attendance.AdminService.LoginAdmin:output_type -> attendance.AdminResponse
-	11, // 19: attendance.AttendanceService.MarkAttendance:output_type -> attendance.AttendanceResponse
-	13, // 20: attendance.AttendanceService.GetAttendanceForStudent:output_type -> attendance.AttendanceList
-	12, // [12:21] is the sub-list for method output_type
-	3,  // [3:12] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	3,  // 0: attendance.StudentList.students:type_name -> attendance.StudentResponse
+	8,  // 1: attendance.CourseList.courses:type_name -> attendance.CourseResponse
+	14, // 2: attendance.AdminList.admins:type_name -> attendance.AdminResponse
+	17, // 3: attendance.AttendanceList.records:type_name -> attendance.AttendanceResponse
+	0,  // 4: attendance.StudentService.CreateStudent:input_type -> attendance.CreateStudentRequest
+	2,  // 5: attendance.StudentService.GetStudentByID:input_type -> attendance.GetStudentRequest
+	20, // 6: attendance.StudentService.ListStudents:input_type -> attendance.Empty
+	5,  // 7: attendance.CourseService.CreateCourse:input_type -> attendance.CreateCourseRequest
+	20, // 8: attendance.CourseService.ListCourses:input_type -> attendance.Empty
+	10, // 9: attendance.AdminService.CreateAdmin:input_type -> attendance.CreateAdminRequest
+	12, // 10: attendance.AdminService.LoginAdmin:input_type -> attendance.AdminLoginRequest
+	16, // 11: attendance.AttendanceService.MarkAttendance:input_type -> attendance.MarkAttendanceRequest
+	18, // 12: attendance.AttendanceService.GetAttendanceForStudent:input_type -> attendance.StudentAttendanceRequest
+	3,  // 13: attendance.StudentService.CreateStudent:output_type -> attendance.StudentResponse
+	3,  // 14: attendance.StudentService.GetStudentByID:output_type -> attendance.StudentResponse
+	4,  // 15: attendance.StudentService.ListStudents:output_type -> attendance.StudentList
+	8,  // 16: attendance.CourseService.CreateCourse:output_type -> attendance.CourseResponse
+	9,  // 17: attendance.CourseService.ListCourses:output_type -> attendance.CourseList
+	14, // 18: attendance.AdminService.CreateAdmin:output_type -> attendance.AdminResponse
+	14, // 19: attendance.AdminService.LoginAdmin:output_type -> attendance.AdminResponse
+	17, // 20: attendance.AttendanceService.MarkAttendance:output_type -> attendance.AttendanceResponse
+	19, // 21: attendance.AttendanceService.GetAttendanceForStudent:output_type -> attendance.AttendanceList
+	13, // [13:22] is the sub-list for method output_type
+	4,  // [4:13] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_attendance_proto_init() }
@@ -962,7 +1325,7 @@ func file_attendance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_attendance_proto_rawDesc), len(file_attendance_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   4,
 		},

@@ -17,8 +17,7 @@ migrate -source "file://C:/Users/Lenovo/Documents/PROJECT GOLANG/Team2_Attendanc
 
 protoc --go_out=. --go-grpc_out=. proto/attendance.proto
 
-protoc -I=proto -I=./googleapis --go_out=internal/service/attendancepb --go_opt=paths=source_relative --go-grpc_out=internal/service/attendancepb --go-grpc_opt=paths=source_relative --grpc-gateway_out=internal/service/attendancepb --grpc-gateway_opt=paths=source_relative proto/attendance.proto
-
+protoc -I=proto -I=googleapis --go_out=internal/service/attendancepb --go_opt=paths=source_relative --go-grpc_out=internal/service/attendancepb --go-grpc_opt=paths=source_relative --grpc-gateway_out=internal/service/attendancepb --grpc-gateway_opt=paths=source_relative proto/attendance.proto
 
 go run main.go
 

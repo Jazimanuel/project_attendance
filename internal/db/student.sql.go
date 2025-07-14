@@ -32,6 +32,16 @@ func (q *Queries) CreateStudent(ctx context.Context, arg CreateStudentParams) (S
 	return i, err
 }
 
+const deleteStudent = `-- name: DeleteStudent :exec
+DELETE FROM students
+WHERE id = $1
+`
+
+func (q *Queries) DeleteStudent(ctx context.Context, id int32) error {
+	_, err := q.db.ExecContext(ctx, deleteStudent, id)
+	return err
+}
+
 const getStudentByID = `-- name: GetStudentByID :one
 SELECT id, name, email, created_at FROM students
 WHERE id = $1
@@ -80,4 +90,29 @@ func (q *Queries) ListStudents(ctx context.Context) ([]Student, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateStudent = `-- name: UpdateStudent :one
+UPDATE students
+SET name = $2, email = $3
+WHERE id = $1
+RETURNING id, name, email, created_at
+`
+
+type UpdateStudentParams struct {
+	ID    int32
+	Name  string
+	Email string
+}
+
+func (q *Queries) UpdateStudent(ctx context.Context, arg UpdateStudentParams) (Student, error) {
+	row := q.db.QueryRowContext(ctx, updateStudent, arg.ID, arg.Name, arg.Email)
+	var i Student
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Email,
+		&i.CreatedAt,
+	)
+	return i, err
 }
