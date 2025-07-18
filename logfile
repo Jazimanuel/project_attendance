@@ -1,0 +1,55 @@
+2025-07-18 09:03:12.103 +07 [10920] LOG:  starting PostgreSQL 17.5 on x86_64-windows, compiled by msvc-19.44.35209, 64-bit
+2025-07-18 09:03:12.123 +07 [10920] LOG:  listening on IPv6 address "::1", port 5432
+2025-07-18 09:03:12.125 +07 [10920] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-18 09:03:12.875 +07 [21664] LOG:  database system was interrupted; last known up at 2025-07-06 15:30:11 +07
+2025-07-18 09:03:22.893 +07 [21664] LOG:  syncing data directory (fsync), elapsed time: 10.01 s, current path: ./base/4/3379
+2025-07-18 09:03:32.902 +07 [21664] LOG:  syncing data directory (fsync), elapsed time: 20.02 s, current path: ./global/1214
+2025-07-18 09:03:34.090 +07 [21664] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-07-18 09:03:34.103 +07 [21664] LOG:  redo starts at 0/252CCF8
+2025-07-18 09:03:34.103 +07 [21664] LOG:  invalid record length at 0/252CE00: expected at least 24, got 0
+2025-07-18 09:03:34.103 +07 [21664] LOG:  redo done at 0/252CDC8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-07-18 09:03:34.160 +07 [19716] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-07-18 09:03:34.189 +07 [19716] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.004 s, total=0.079 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/252CE00, redo lsn=0/252CE00
+2025-07-18 09:03:34.736 +07 [10920] LOG:  database system is ready to accept connections
+2025-07-18 09:05:43.146 +07 [46012] FATAL:  database "public" does not exist
+2025-07-18 09:06:17.805 +07 [11116] FATAL:  database "public" does not exist
+2025-07-18 09:08:34.186 +07 [19716] LOG:  checkpoint starting: time
+2025-07-18 09:08:57.569 +07 [29528] ERROR:  relation "students" already exists
+2025-07-18 09:08:57.569 +07 [29528] STATEMENT:  CREATE TABLE students (
+	  id SERIAL PRIMARY KEY,
+	  name TEXT NOT NULL,
+	  email TEXT UNIQUE NOT NULL,
+	  created_at TIMESTAMP DEFAULT now()
+	);
+	
+	CREATE TABLE courses (
+	  id SERIAL PRIMARY KEY,
+	  title TEXT NOT NULL,
+	  instructor TEXT NOT NULL,
+	  created_at TIMESTAMP DEFAULT now()
+	);
+	
+	CREATE TABLE admins (
+	  id SERIAL PRIMARY KEY,
+	  name TEXT NOT NULL,
+	  email TEXT UNIQUE NOT NULL,
+	  role TEXT DEFAULT 'admin',
+	  created_at TIMESTAMP DEFAULT now()
+	);
+	
+	CREATE TABLE attendance (
+	  id SERIAL PRIMARY KEY,
+	  student_id INT REFERENCES students(id) ON DELETE CASCADE,
+	  course_id INT REFERENCES courses(id) ON DELETE CASCADE,
+	  check_in TIMESTAMP,
+	  check_out TIMESTAMP,
+	  status varchar(20),
+	  aborted BOOLEAN DEFAULT false,
+	  created_at TIMESTAMP DEFAULT now()
+	);
+	
+2025-07-18 09:08:57.980 +07 [29528] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2025-07-18 09:10:25.316 +07 [19716] LOG:  checkpoint complete: wrote 997 buffers (6.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=110.445 s, sync=0.659 s, total=111.130 s; sync files=360, longest=0.036 s, average=0.002 s; distance=4659 kB, estimate=4659 kB; lsn=0/2A2FAB8, redo lsn=0/29B9DC0
+2025-07-18 09:18:34.849 +07 [19716] LOG:  checkpoint starting: time
+2025-07-18 09:18:44.644 +07 [19716] LOG:  checkpoint complete: wrote 89 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=9.656 s, sync=0.096 s, total=9.796 s; sync files=67, longest=0.006 s, average=0.002 s; distance=632 kB, estimate=4257 kB; lsn=0/2A58038, redo lsn=0/2A57F90
