@@ -169,7 +169,15 @@ message AttendanceResponse {
   int32 student_id = 2;
   int32 course_id = 3;
   string status = 4;
-  string timestamp = 5;
+  string checkIn = 5;
+  string checkout = 6;
+}
+
+message CreateAttendanceRequest{
+  int32 student_id = 1;
+  int32 course_id = 2;
+  string status = 3; // "present", "absent", etc.
+  string checkin = 4;
 }
 
 message StudentAttendanceRequest {

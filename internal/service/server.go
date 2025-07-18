@@ -1,12 +1,12 @@
 package service
 
 import (
+	"Team2_Attendance_Project/internal/db"
+	"Team2_Attendance_Project/internal/service/attendancepb"
 	"context"
 	"database/sql"
 	"fmt"
-
-	"Team2_Attendance_Project/internal/db"
-	"Team2_Attendance_Project/internal/service/attendancepb"
+	"time"
 )
 
 type Server struct {
@@ -324,4 +324,79 @@ func (s *Server) DeleteAdmin(ctx context.Context, req *attendancepb.GetAdminByEm
 
 	}
 	return nil
+}
+
+func (s *Server) CreateAttendance(ctx context.Context, req *attendancepb.CreateAttendanceRequest) (*attendancepb.AttendanceResponse, error) {
+	attendance, err := s.queries.RecordAttendance(ctx, db.RecordAttendanceParams{
+		StudentID: req.StudentId,
+		CourseID:  req.CourseId,
+		Status:    req.Status,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("create attandance error")
+	}
+
+	return &attendancepb.AttendanceResponse{
+		Id:        attendance.ID,
+		StudentId: req.StudentId,
+		CourseId:  req.CourseId,
+		Status:    attendance.Status,
+		CheckIn:   attendance.CheckIn.Format("2006-01-02 15:04:05"),
+		Checkout:  attendance.CheckOut.Time.Format("2006-01-02 15:04:05"),
+	}, nil
+}
+
+func (s *Server) UpdateAttendance(ctx context.Context, req *attendancepb.StudentAttendanceRequest) (*attendancepb.AttendanceResponse, error) {
+
+	anotherCurrentNullTime := sql.NullTime{
+		Time:  time.Now(),
+		Valid: true,
+	}
+
+	attendance, err := s.queries.UpdateCheckOut(ctx, db.UpdateCheckOutParams{
+		CheckOut: anotherCurrentNullTime,
+		ID:       req.StudentId,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("update admin error")
+	}
+
+	return &attendancepb.AttendanceResponse{
+		Id:        attendance.ID,
+		StudentId: attendance.StudentID,
+		CourseId:  attendance.CourseID,
+		Status:    attendance.Status,
+		CheckIn:   attendance.CheckIn.Format("2006-01-02 15:04:05"),
+		Checkout:  attendance.CheckOut.Time.Format("2006-01-02 15:04:05"),
+	}, nil
+}
+
+func (s *Server) ListAttendanceByStudent(ctx context.Context, _ *attendancepb.Empty) (*attendancepb.AttendanceList, error) {
+
+	studentID := ctx.Value("student_id").(int32)
+
+	attendances, err := s.queries.ListAttendanceByStudent(ctx, studentID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var protoAttendance []*attendancepb.AttendanceResponse
+	for _, attendance := range attendances {
+
+		protoAttendance = append(protoAttendance, &attendancepb.AttendanceResponse{
+			Id:        attendance.ID,
+			StudentId: attendance.StudentID,
+			CourseId:  attendance.CourseID,
+			Status:    attendance.Status,
+			CheckIn:   attendance.CheckIn.Format("2006-01-02 15:04:05"),
+			Checkout:  attendance.CheckOut.Time.Format("2006-01-02 15:04:05"),
+		})
+	}
+
+	return &attendancepb.AttendanceList{
+		Records: protoAttendance,
+	}, nil
 }

@@ -6,6 +6,7 @@ package db
 
 import (
 	"database/sql"
+	"time"
 )
 
 type Admin struct {
@@ -18,10 +19,11 @@ type Admin struct {
 
 type Attendance struct {
 	ID        int32
-	StudentID sql.NullInt32
-	CourseID  sql.NullInt32
-	CheckIn   sql.NullTime
+	StudentID int32
+	CourseID  int32
+	CheckIn   time.Time
 	CheckOut  sql.NullTime
+	Status    string
 	Aborted   sql.NullBool
 	CreatedAt sql.NullTime
 }

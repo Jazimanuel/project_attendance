@@ -1,12 +1,13 @@
 -- name: RecordAttendance :one
-INSERT INTO attendance (student_id, course_id, check_in)
+INSERT INTO attendance (student_id, course_id, status)
 VALUES ($1, $2, $3)
 RETURNING *;
 
--- name: UpdateCheckOut :exec
+-- name: UpdateCheckOut :one
 UPDATE attendance
 SET check_out = $1
-WHERE id = $2;
+WHERE id = $2
+RETURNING *;
 
 -- name: ListAttendanceByStudent :many
 SELECT * FROM attendance

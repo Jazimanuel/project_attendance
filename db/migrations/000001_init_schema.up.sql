@@ -22,10 +22,11 @@ CREATE TABLE admins (
 
 CREATE TABLE attendance (
   id SERIAL PRIMARY KEY,
-  student_id INT REFERENCES students(id) ON DELETE CASCADE,
-  course_id INT REFERENCES courses(id) ON DELETE CASCADE,
-  check_in TIMESTAMP,
+  student_id INT REFERENCES students(id) ON DELETE CASCADE NOT NULL,
+  course_id INT REFERENCES courses(id) ON DELETE CASCADE NOT NULL,
+  check_in TIMESTAMP NOT NULL DEFAULT now(),
   check_out TIMESTAMP,
+  status varchar(20) NOT NULL ,
   aborted BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT now()
 );

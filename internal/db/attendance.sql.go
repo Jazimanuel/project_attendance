@@ -11,12 +11,12 @@ import (
 )
 
 const listAttendanceByStudent = `-- name: ListAttendanceByStudent :many
-SELECT id, student_id, course_id, check_in, check_out, aborted, created_at FROM attendance
+SELECT id, student_id, course_id, check_in, check_out, status, aborted, created_at FROM attendance
 WHERE student_id = $1
 ORDER BY created_at DESC
 `
 
-func (q *Queries) ListAttendanceByStudent(ctx context.Context, studentID sql.NullInt32) ([]Attendance, error) {
+func (q *Queries) ListAttendanceByStudent(ctx context.Context, studentID int32) ([]Attendance, error) {
 	rows, err := q.db.QueryContext(ctx, listAttendanceByStudent, studentID)
 	if err != nil {
 		return nil, err
@@ -31,6 +31,7 @@ func (q *Queries) ListAttendanceByStudent(ctx context.Context, studentID sql.Nul
 			&i.CourseID,
 			&i.CheckIn,
 			&i.CheckOut,
+			&i.Status,
 			&i.Aborted,
 			&i.CreatedAt,
 		); err != nil {
@@ -48,19 +49,19 @@ func (q *Queries) ListAttendanceByStudent(ctx context.Context, studentID sql.Nul
 }
 
 const recordAttendance = `-- name: RecordAttendance :one
-INSERT INTO attendance (student_id, course_id, check_in)
+INSERT INTO attendance (student_id, course_id, status)
 VALUES ($1, $2, $3)
-RETURNING id, student_id, course_id, check_in, check_out, aborted, created_at
+RETURNING id, student_id, course_id, check_in, check_out, status, aborted, created_at
 `
 
 type RecordAttendanceParams struct {
-	StudentID sql.NullInt32
-	CourseID  sql.NullInt32
-	CheckIn   sql.NullTime
+	StudentID int32
+	CourseID  int32
+	Status    string
 }
 
 func (q *Queries) RecordAttendance(ctx context.Context, arg RecordAttendanceParams) (Attendance, error) {
-	row := q.db.QueryRowContext(ctx, recordAttendance, arg.StudentID, arg.CourseID, arg.CheckIn)
+	row := q.db.QueryRowContext(ctx, recordAttendance, arg.StudentID, arg.CourseID, arg.Status)
 	var i Attendance
 	err := row.Scan(
 		&i.ID,
@@ -68,16 +69,18 @@ func (q *Queries) RecordAttendance(ctx context.Context, arg RecordAttendancePara
 		&i.CourseID,
 		&i.CheckIn,
 		&i.CheckOut,
+		&i.Status,
 		&i.Aborted,
 		&i.CreatedAt,
 	)
 	return i, err
 }
 
-const updateCheckOut = `-- name: UpdateCheckOut :exec
+const updateCheckOut = `-- name: UpdateCheckOut :one
 UPDATE attendance
 SET check_out = $1
 WHERE id = $2
+RETURNING id, student_id, course_id, check_in, check_out, status, aborted, created_at
 `
 
 type UpdateCheckOutParams struct {
@@ -85,7 +88,18 @@ type UpdateCheckOutParams struct {
 	ID       int32
 }
 
-func (q *Queries) UpdateCheckOut(ctx context.Context, arg UpdateCheckOutParams) error {
-	_, err := q.db.ExecContext(ctx, updateCheckOut, arg.CheckOut, arg.ID)
-	return err
+func (q *Queries) UpdateCheckOut(ctx context.Context, arg UpdateCheckOutParams) (Attendance, error) {
+	row := q.db.QueryRowContext(ctx, updateCheckOut, arg.CheckOut, arg.ID)
+	var i Attendance
+	err := row.Scan(
+		&i.ID,
+		&i.StudentID,
+		&i.CourseID,
+		&i.CheckIn,
+		&i.CheckOut,
+		&i.Status,
+		&i.Aborted,
+		&i.CreatedAt,
+	)
+	return i, err
 }
